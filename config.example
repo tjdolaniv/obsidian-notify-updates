@@ -1,0 +1,25 @@
+# Root path of your Obsidian vault
+VAULT_PATH="$HOME/path/to/vault"
+
+# Space-separated folders to watch for new notes (relative to VAULT_PATH)
+WATCH_FOLDERS="Projects Areas Resources"
+
+# Path to the tasks file (full path)
+TASKS_FILE="$HOME/path/to/vault/Recurring Household Chores.md"
+
+# Obsidian vault name (used to wake Obsidian via URI before reading tasks)
+VAULT_NAME="MyVault"
+
+# Obsidian deep link opened when the notification is tapped
+CLICK_URL="obsidian://open?vault=MyVault&file=path%2Fto%2Fdashboard"
+
+# ntfy.sh topic (keep this obscure — it's your only auth)
+NTFY_TOPIC="your-topic-here"
+
+# ntfy server (default: public server)
+NTFY_URL="https://ntfy.sh"
+
+# Cron schedule (add to crontab with: crontab -e)
+#
+# Morning: 0 8 * * * /bin/bash ~/.config/obsidian-notify/check_tasks.sh morning >> ~/.config/obsidian-notify/notify.log 2>&1
+# Evening: 0 17 * * * /bin/bash ~/.config/obsidian-notify/check_tasks.sh evening >> ~/.config/obsidian-notify/notify.log 2>&1

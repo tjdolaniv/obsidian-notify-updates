@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.obsidian-notify.watch-folders</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>YOUR_REPO_PATH/watch_folders.sh</string>
+    </array>
+
+    <!-- Polls every 5 minutes for new notes. -->
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <key>StandardOutPath</key>
+    <string>YOUR_REPO_PATH/notify.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>YOUR_REPO_PATH/notify.log</string>
+</dict>
+</plist>

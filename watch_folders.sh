@@ -34,8 +34,11 @@ CURRENT_FILES=$(
   done | sort
 )
 
+log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"; }
+
 # Initialization run: record current state without notifying
 if [[ ! -f "$STATE_FILE" ]]; then
+  log "init: seeding state with $(echo "$CURRENT_FILES" | grep -c . || true) file(s) in $WATCH_FOLDERS"
   echo "$CURRENT_FILES" > "$STATE_FILE"
   exit 0
 fi
@@ -44,6 +47,9 @@ fi
 
 # Find files present now but not in the previous state
 NEW_FILES=$(comm -23 <(echo "$CURRENT_FILES") <(sort "$STATE_FILE"))
+
+NEW_COUNT=$(echo "$NEW_FILES" | grep -c . || true)
+log "poll: $NEW_COUNT new file(s) in $WATCH_FOLDERS"
 
 # Send a notification for each new file
 while IFS= read -r file; do
@@ -59,6 +65,7 @@ while IFS= read -r file; do
   summary=$(extract_summary "$file")
   body="${summary:-$rel_path}"
 
+  log "notifying: $rel_path"
   curl -s --fail \
     -H "Title: New note: $filename" \
     -H "Click: $click_url" \
